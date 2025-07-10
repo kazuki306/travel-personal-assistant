@@ -94,34 +94,34 @@ export function Chat() {
     try {
       // 新しいメッセージを含む会話全体を送信
       const updatedConversation = [...conversation, message];
-      console.log('🔍 Sending conversation:', updatedConversation);
+      console.log('Sending conversation:', updatedConversation);
       
       const { data, errors } = await amplifyClient.queries.chat({
         conversation: JSON.stringify(updatedConversation),
       });
 
-      console.log('🔍 Raw response data:', data);
-      console.log('🔍 Data type:', typeof data);
-      console.log('🔍 Data constructor:', data?.constructor?.name);
-      console.log('🔍 Is string?', typeof data === 'string');
-      console.log('🔍 Errors:', errors);
+      console.log('Raw response data:', data);
+      console.log('Data type:', typeof data);
+      console.log('Data constructor:', data?.constructor?.name);
+      console.log('Is string?', typeof data === 'string');
+      console.log('Errors:', errors);
 
       if (!errors && data) {
-        console.log('🔍 Processing response data...');
+        console.log('Processing response data...');
         
         let responseMessage: Message;
         
         if (typeof data === 'string') {
-          console.log('🔍 Data is string, attempting to parse...');
+          console.log('Data is string, attempting to parse...');
           try {
             responseMessage = JSON.parse(data);
-            console.log('🔍 Successfully parsed string data:', responseMessage);
+            console.log('Successfully parsed string data:', responseMessage);
           } catch (parseError) {
-            console.error('❌ Failed to parse string data:', parseError);
+            console.error('Failed to parse string data:', parseError);
             throw new Error('Failed to parse response data');
           }
         } else {
-          console.log('🔍 Data is already an object:', data);
+          console.log('Data is already an object:', data);
           responseMessage = data as Message;
         }
         
@@ -130,7 +130,7 @@ export function Chat() {
           responseMessage, // AIの応答のみ追加
         ]);
       } else {
-        console.log('🔍 Processing errors:', errors);
+        console.log('Processing errors:', errors);
         const errorMessage = errors?.[0]?.message || 
                            errors?.[0]?.errorType || 
                            (typeof errors?.[0] === 'object' ? JSON.stringify(errors?.[0]) : String(errors?.[0])) ||
@@ -139,7 +139,7 @@ export function Chat() {
       }
     } catch (err) {
       setError((err as Error).message);
-      console.error("❌ Error fetching chat response:", err);
+      console.error("Error fetching chat response:", err);
     } finally {
       setIsLoading(false);
     }
