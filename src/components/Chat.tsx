@@ -80,6 +80,10 @@ export function Chat() {
     e.preventDefault();
     if (inputValue.trim() || selectedImage) {
       const message = createUserMessage();
+      
+      // ユーザーメッセージを即座に表示
+      setConversation(prev => [...prev, message]);
+      
       fetchChatResponse(message);
     }
   };
@@ -123,8 +127,7 @@ export function Chat() {
         
         setConversation((prevConversation) => [
           ...prevConversation,
-          message, // ユーザーメッセージを追加
-          responseMessage, // AIの応答を追加
+          responseMessage, // AIの応答のみ追加
         ]);
       } else {
         console.log('🔍 Processing errors:', errors);
