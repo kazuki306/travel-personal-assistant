@@ -123,3 +123,75 @@ body {
 main {
   padding: 1rem;
 }
+
+/* Image-related styles */
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.image-button {
+  padding: 8px 12px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  min-width: 40px;
+}
+
+.image-button:hover {
+  background-color: #5a6268;
+}
+
+.image-preview-container {
+  padding: 10px 20px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+}
+
+.image-preview {
+  position: relative;
+  display: inline-block;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.message-text {
+  margin-bottom: 5px;
+}
+
+.message-image {
+  margin-top: 5px;
+}
+
+.message-image img {
+  display: block;
+  border: 1px solid #ddd;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px;
+  border: 1px solid #f5c6cb;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .message-image img {
+    max-width: 200px !important;
+    max-height: 200px !important;
+  }
+  
+  .image-preview img {
+    max-width: 150px !important;
+    max-height: 150px !important;
+  }
+}
